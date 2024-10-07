@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "axios": "^1.7.7",
     "daisyui": "^4.12.11",
     "dayjs": "^1.11.13",
+    "mongoose": "^8.7.0",
     "next": "14.2.14",
+    "papaparse": "^5.4.1",
     "react": "^18",
     "react-calendar": "^5.0.0",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",

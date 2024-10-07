@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.in-range {
+    background-color: rgba(0, 0, 0, 0.1); /* Couleur de la bande */
+    border-radius: 0; /* Supprime les coins arrondis */
+}
+
+.in-range:first-child {
+    border-top-left-radius: 50%; /* Arrondir le coin supérieur gauche */
+    border-bottom-left-radius: 50%; /* Arrondir le coin inférieur gauche */
+}
+
+.in-range:last-child {
+    border-top-right-radius: 50%; /* Arrondir le coin supérieur droit */
+    border-bottom-right-radius: 50%; /* Arrondir le coin inférieur droit */
+}
