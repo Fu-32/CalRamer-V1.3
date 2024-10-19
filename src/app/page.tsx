@@ -78,6 +78,8 @@ export default function Page() {
     <div>
       <h1>Mon Calendrier</h1>
       <CalendrierV2 />
+      <h2 className="mt-8">Mon contenu</h2>
+      
     </div>
   );
 }
