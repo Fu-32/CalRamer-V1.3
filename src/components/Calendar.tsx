@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/fr';
 import 'tailwindcss/tailwind.css';
-import { supabase } from '../lib/supabaseClient';
+import { supabaseClient } from '../lib/supabaseClient';
 import isBetween from 'dayjs/plugin/isBetween';
 import { RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 
@@ -42,7 +42,7 @@ const Calendar: React.FC = () => {
 
   const fetchReservations = async () => {
     console.log('[Supabase] Récupération des réservations...');
-    const { data, error } = await supabase.from('reservations').select('*');
+    const { data, error } = await supabaseClient.from('reservations').select('*');
     if (error) {
       console.error('[Supabase] Erreur de récupération:', error.message);
     } else {
@@ -54,7 +54,7 @@ const Calendar: React.FC = () => {
   useEffect(() => {
     fetchReservations();
 
-    const channel = supabase
+    const channel = supabaseClient
       .channel('reservations')
       .on(
         'postgres_changes',
@@ -67,7 +67,7 @@ const Calendar: React.FC = () => {
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      supabaseClient.removeChannel(channel);
     };
   }, []);
 
@@ -117,7 +117,7 @@ const Calendar: React.FC = () => {
     if (startDate && endDate) {
       try {
         console.log('[Supabase] Création de la réservation...');
-        const { data, error } = await supabase.from('reservations').insert([
+        const { data, error } = await supabaseClient.from('reservations').insert([
           {
             start_date: startDate.format('YYYY-MM-DD'),
             end_date: endDate.format('YYYY-MM-DD'),
