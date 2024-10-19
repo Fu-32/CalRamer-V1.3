@@ -1,7 +1,7 @@
 // src/app/api/reservations/route.ts
 
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '../../../lib/supabaseClient';
+import { supabaseClient } from '../../../lib/supabaseClient';
 
 // // Définir une interface pour la réservation
 // interface Reservation {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     };
 
     // Insérer la nouvelle réservation dans Supabase et récupérer les données insérées
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('reservations')
       .insert([newReservation]) // Passer un tableau d'objets
       .select(); // Utiliser .select() pour récupérer les données insérées
@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
     console.log('Paramètres de recherche:', { startDateParam, endDateParam });
 
     // Construire la requête Supabase avec des filtres conditionnels
-    let query = supabase
+    let query = supabaseClient
       .from('reservations')
       .select('id, rental_id, user_id, start_date, end_date, created_at, updated_at');
 
